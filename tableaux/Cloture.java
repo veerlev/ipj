@@ -332,15 +332,29 @@ class Cloture {
         	}
         }
 
-        
-       /* System.out.print("][");
-        System.out.println("]");
+          //trouver cartes n’étant pas « convexes par ligne » / effacer étangs
+        for (int i = 0; i < carte.length; i++) {
+        	int debut = 0;
+            int fin = carte[0].length - 1;
+            while (carte[i][debut] != 1) {debut++;}
+            while (carte[i][fin] != 1) {fin--;}
+            for (int j = debut + 1; j < fin; j++) {
+            	if (carte[i][j] != 1) {
+            		if (!bord.contains(carte[i][j])) {
+            			carte[i][j] = 1;
+            		} else {
+            			System.out.println("Votre carte du terrain n'a pas le bon format :");
+            	        System.out.print("bord extérieur entrant trouvé en position [");
+            	        System.out.print(i + "][" + j);
+            	        System.out.println("]");
+            	        return;
+            		}
+            	}
+            }
+        }
 
-        System.out.println("Votre carte du terrain n'a pas le bon format :");
-        System.out.print("bord extérieur entrant trouvé en position [");
-        System.out.print("][");
-        System.out.println("]");
 
+       /* 
         System.out.print("Il vous faut ");
         System.out.println(" mêtres de clôture pour votre terrain.");
         
