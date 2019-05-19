@@ -245,9 +245,16 @@ class Cloture {
          * Completez le programme à  partir d'ici.
          *******************************************/
         //Vérification que la carte contient bien uniquement des 0 et des 1
-         
+         for (int i = 0; i < carte.length; i++)
+        	for (int j = 0; j < carte[i].length; j++)
+        		if ((carte[i][j] != 0) && (carte[i][j] != 1)){
+        			System.out.println("Votre carte du terrain n’a pas le bon format :");
+        			System.out.printf("valeur \'%d\' trouvée en position [%d][%d]\r\n",
+        					carte[i][j], i, j);
+        			return;
+        		}
         
-        System.out.print("][");
+       /* System.out.print("][");
         System.out.println("]");
 
         System.out.println("Votre carte du terrain n'a pas le bon format :");
