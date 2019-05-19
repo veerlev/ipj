@@ -305,6 +305,34 @@ class Cloture {
         		}
         	}
         }
+
+
+        // tour du bord de la carte
+        ArrayList<Integer> bord = new ArrayList<Integer>();  
+        for (int i = 0; i < carte.length; i++) {
+        	int element = carte[i][0];                          //NORD
+        	if ((element != 1) && !(bord.contains(element))){
+        		bord.add(element);
+        	}
+        	int j = carte[i].length - 1;
+        	element = carte[i][j];								//SUD
+        	if ((element != 1) && (!bord.contains(element))){
+        		bord.add(element);
+        	}
+        }
+        for (int j = 0; j < carte[0].length; j++) {
+        	int element = carte[0][j];                           //OUEST
+        	if ((element != 1) && (!bord.contains(element))){
+        		bord.add(element);
+        	}
+        	int i = carte.length - 1; 
+        	element = carte[i][j];								//EST
+        	if ((element != 1) && (!bord.contains(element))){
+        		bord.add(element);
+        	}
+        }
+
+        
        /* System.out.print("][");
         System.out.println("]");
 
