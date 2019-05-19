@@ -254,6 +254,57 @@ class Cloture {
         			return;
         		}
         
+        //Vérification de la convexité de ligne
+             //trouver les composantes connexes
+        ArrayList<Integer> lignes = new ArrayList<Integer>();
+        ArrayList<Integer> colonnes = new ArrayList<Integer>();
+        int composante = 1;
+        for (int i = 0; i < carte.length; i++) {
+        	for (int j = 0; j < carte[i].length; j++) {
+        		if (carte[i][j] == 0) {
+        			composante++;
+        			lignes.add(i);
+        			colonnes.add(j);
+        			while (!lignes.isEmpty()) {
+        				int ligne = lignes.get(0);
+        				int colonne = colonnes.get(0);
+        				lignes.remove(0);
+        				colonnes.remove(0);
+        				if(carte[ligne][colonne] == 0) {
+        					carte[ligne][colonne] = composante;
+        					if (ligne > 0) {                          //NORD
+        						if (carte[ligne - 1][colonne] == 0) {
+        							lignes.add(ligne - 1);
+        							colonnes.add(colonne);
+        							
+        						}
+        					}        					
+        					if (ligne < carte.length - 1) {              //SUD
+        						if (carte[ligne + 1][colonne] == 0) {
+        							lignes.add(ligne + 1);
+        							colonnes.add(colonne);
+        							
+        						}
+        					}        					
+        					if (colonne > 0) {                          //OUEST
+        						if (carte[ligne][colonne - 1] == 0) {
+        							lignes.add(ligne);
+        							colonnes.add(colonne - 1);
+        							
+        						}
+        					}
+        					if (colonne < carte[0].length - 1) {          //EST
+        						if (carte[ligne][colonne + 1] == 0) {
+        							lignes.add(ligne);
+        							colonnes.add(colonne + 1);
+        							
+        						}
+        					}
+        				}
+        			}
+        		}
+        	}
+        }
        /* System.out.print("][");
         System.out.println("]");
 
