@@ -353,12 +353,44 @@ class Cloture {
             }
         }
 
-
-       /* 
-        System.out.print("Il vous faut ");
-        System.out.println(" mêtres de clôture pour votre terrain.");
-        
-
+       //calculer cloture
+        int somme = carte.length * 2;               //EST + OUEST
+        for (int i = 0; i < carte.length; i++) {
+        	int debut = 0;
+            int fin = carte[0].length - 1;
+            while (carte[i][debut] != 1) {debut++;}
+            while (carte[i][fin] != 1) {fin--;}
+            if (i == 0 ) {
+            	somme += fin - debut + 1;          //NORD
+            }	
+            if (i == carte.length - 1) {   
+            	somme += fin - debut + 1;  			//SUD
+            }
+            if (i < carte.length - 1) {                  	                     //0111            	
+            	int d = debut, f = fin;                                          //0XX1
+        		while (d < carte[0].length && carte[i + 1][d] != 1){              
+        			somme++;
+        			d++;
+        		}        		
+        		while (carte[i + 1][f] != 1){                   //111110
+        			somme++;                                    //1xxxx0
+        			f--;                                      
+        		}        		
+        	}
+            if (i - 1 >= 0) {
+            	while(carte[i - 1][debut] != 1) {
+            		somme++;
+            		debut++;
+            	}
+            	//System.out.println(i + ". deasupra stanga: " + somme + "d: " + debut);
+            	while(fin > 0 && carte[i - 1][fin] != 1) {
+            		somme++;
+            		fin--;
+            	}
+            }            
+        }                
+        System.out.print("Il vous faut " + somme * 2.5);
+        System.out.println(" mètres de clôture pour votre terrain.");       
         /*******************************************
          * Ne rien modifier après cette ligne.
          *******************************************/
