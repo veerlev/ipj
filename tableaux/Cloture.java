@@ -372,23 +372,22 @@ class Cloture {
         			somme++;
         			d++;
         		}        		
-        		while (carte[i + 1][f] != 1){                   //111110
-        			somme++;                                    //1xxxx0
+        		while (f > 0 && carte[i + 1][f] != 1){                   //111110
+        			somme++;                                             //1xxxx0
         			f--;                                      
         		}        		
         	}
             if (i - 1 >= 0) {
-            	while(carte[i - 1][debut] != 1) {
+            	while(debut < carte[0].length && carte[i - 1][debut] != 1) {
             		somme++;
             		debut++;
             	}
-            	//System.out.println(i + ". deasupra stanga: " + somme + "d: " + debut);
             	while(fin > 0 && carte[i - 1][fin] != 1) {
             		somme++;
             		fin--;
             	}
             }            
-        }                
+        }                      
         System.out.print("Il vous faut " + somme * 2.5);
         System.out.println(" mètres de clôture pour votre terrain.");       
         /*******************************************
