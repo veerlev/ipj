@@ -1,3 +1,91 @@
+/*
+Exercice 1 — Décharge communale
+1.1 Introduction
+Votre commune cherche le meilleur endroit pour installer sa décharge publique.
+Elle souhaite que sa décharge soit la plus éloignée possible des habitations. Les
+habitations sont repérées par leur coordonnées x et y sur un plan à deux dimensions. Comme la commune a déjà une idée de l’endroit où elle aimerait placer
+la décharge, elle souhaite vérifier que la distance entre la position souhaitée et la
+plus proche des habitations soit raisonnable et la placer de façon optimale près de
+l’endroit envisagé.
+Voici un exemple de configuration des données (les cercles désignent les habitations et le carré, la position souhaitée pour la décharge) :
+x
+y
+Télécharger le programme Decharge.java fourni sur le site du courset le compléter suivant les instructions données ci-dessous.
+Toutes les méthodes que vous définirez dans votre programme devront être
+public et static.
+1.2 Calcul des distances
+Dans le fichier fourni, définissez une méthode :
+double calculerDistance(int x1, int y1, int x2, int y2)
+qui calcule et retourne la distance entre les deux points (x1,y1) et (x2, y2)
+passés en arguments.
+Pour calculer la distance entre deux points (x1, y1) et (x2, y2), vous utiliserez la formule suivante :
+p
+(x1 − x2)2 + (y1 − y2)2
+Indication : Pour représenter la distance la plus importante possible entre le point
+choisi pour la décharge et un habitation, vous pourrez utiliser la constante Java
+Integer.MAX_VALUE.
+Voir l’exemple de déroulement plus bas pour des valeurs de test.
+1.3 Habitation la plus proche
+Complétez votre programme en définissant la méthode :
+int plusProche(int x, int y, int[] coordonneesHabitations)
+où coordonneesHabitations est un tableau de coordonnées pour les habitations de la commune, tel que décrit plus haut. La méthode plusProche doit
+retourner la position (dans le tableau coordonnesHabitations) de la paire
+(xp, yp) de l’habitation la plus proche de point (x, y). Par exemple, si c’est la
+deuxième habitation (12, 55) du tableau (33, 12, 12, 55, 12, 12),
+la méthode doit retourner 1 (la numérotation commence à 0). Dans le cas où plusieurs habitations seraient candidates, seule la première dans le tableau sera retenue.
+Voir l’exemple de déroulement plus bas pour des valeurs de test.
+1.4 Trois habitations les plus proches
+Complétez votre programme en définissant une méthode supplémentaire :
+int[] troisPlusProches(int x, int y, int[] coordonneesHabitations)
+qui retourne dans un tableau d’entiers les coordonnées des trois habitations les
+plus proches du point de (x,y) donné en argument parmi toutes les habitations
+de la commune (passée en argument). La tableau sera ordonné selon les mêmes
+conventions que pour la tableau de coordonnées des habitations (cooordonnée en
+x puis en y).
+Il sera aussi ordonné de la coordonnée la plus proche à la plus distante.
+Indication : Pour atteindre ce résultat, vous pouvez copier la tableau des coordonnées dans un tableau temporaire tmp au moyen de l’instruction
+System.arraycopy(coordonneesHabitations, 0, tmp, 0,
+coordonneesHabitations.length);
+puis chercher trois fois le point le plus proche dans tmp. A chaque fois qu’un
+point le plus proche aura été déterminé il faudra le remplacer par une point trop
+éloigné pour être à nouveau candidat. Vous prendrez la valeur 1000000 pour
+chacune de ces coordonnées (nous supposerons qu’à cette distance on sort de la
+commune).
+Voir l’exemple de déroulement plus bas pour des valeurs de test.
+1.5 Place optimale
+Terminez enfin votre programme en définissant la fonction
+int[] meilleurePlace(int x, int y, int[] coordonneesHabitations)
+qui donne le centre de gravité du triangle définit par les trois habitations les plus
+proches du point de (x,y).
+Le tableau retourné sera donc un tableau à deux entrées dont la première sera la
+coordonnée en x et la seconde la coordonnées en y du centre de gravité.
+Ce « centre de gravité » représente le meilleur compromis pour les trois habitations
+les plus proches. Si (x1,y1), (x2,y2) et (x3,y3) sont les points les plus
+proches du point (x,y), les coordonnées (cx,cy) du centre de gravité seront :
+cx = (x1 + x2 + x3) / 3
+cy = (y1 + y2 + y3) / 3
+Exemple de déroulement Cet exemple s’applique au tableau de coordonnées
+d’habitations fourni, à savoir :
+int[] coordonneesHabitations = {
+9, 30, 18, 8, 3, 18, 25, 36
+};
+Entrez la coordonnee x de la decharge: 10
+Entrez le coordonnee y de la decharge: 15
+--- Question 1 ---
+Coordonnees de l’habitation la plus proche de la decharge :
+(3,18) ; distance = 7.616 metres
+--- Question 2 ---
+Coordonnees des 3 habitations les plus proches de la decharge :
+(10,15) est a :
+7.616 de (3,18)
+10.630 de (18,8)
+15.033 de (9,30)
+--- Question 3 ---
+Coordonnees de la meilleure place pour la decharge :
+(10,18)
+
+*/
+
 import java.util.Scanner;
 import java.util.Arrays;
 import java.text.DecimalFormat;
